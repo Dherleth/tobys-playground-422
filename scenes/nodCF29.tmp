@@ -1,0 +1,140 @@
+[gd_scene load_steps=2 format=3 uid="uid://btcq37gbypbiv"]
+
+[ext_resource type="Script" path="res://src/http.gd" id="1_la67j"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_la67j")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="RequestZone" type="Node2D" parent="."]
+position = Vector2(64, 64)
+
+[node name="Input" type="TextEdit" parent="RequestZone"]
+offset_right = 640.0
+offset_bottom = 88.0
+theme_override_colors/background_color = Color(0.226707, 0.226707, 0.226707, 1)
+text = "https://api.github.com/repos/godotengine/godot/releases/latest"
+wrap_mode = 1
+
+[node name="SendButton" type="Button" parent="RequestZone"]
+offset_left = 648.0
+offset_right = 832.0
+offset_bottom = 88.0
+text = "Send"
+
+[node name="Loading" type="Label" parent="RequestZone"]
+visible = false
+offset_left = 576.0
+offset_top = -32.0
+offset_right = 634.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(1.44392e-07, 0.701049, 1.54018e-06, 1)
+text = "loading"
+
+[node name="FillButtonsZone" type="Node2D" parent="."]
+position = Vector2(72, 24)
+
+[node name="GitHubButton" type="Button" parent="FillButtonsZone"]
+offset_right = 72.0
+offset_bottom = 32.0
+text = "GitHub"
+
+[node name="ApiGetButton" type="Button" parent="FillButtonsZone"]
+offset_left = 80.0
+offset_right = 152.0
+offset_bottom = 32.0
+text = "API GET"
+
+[node name="ResponseZone" type="Node2D" parent="."]
+position = Vector2(64, 200)
+
+[node name="Title" type="Label" parent="ResponseZone"]
+offset_top = -8.0
+offset_right = 75.0
+offset_bottom = 15.0
+text = "Response"
+
+[node name="ResponseResult" type="Node2D" parent="ResponseZone"]
+position = Vector2(0, 32)
+
+[node name="Title" type="Label" parent="ResponseZone/ResponseResult"]
+offset_right = 64.0
+offset_bottom = 23.0
+text = "Result"
+
+[node name="ColorRect" type="ColorRect" parent="ResponseZone/ResponseResult"]
+offset_top = 24.0
+offset_right = 832.0
+offset_bottom = 80.0
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="Result" type="Label" parent="ResponseZone/ResponseResult"]
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 816.0
+offset_bottom = 72.0
+
+[node name="ResponseCode" type="Node2D" parent="ResponseZone"]
+position = Vector2(0, 128)
+
+[node name="Title" type="Label" parent="ResponseZone/ResponseCode"]
+offset_right = 64.0
+offset_bottom = 23.0
+text = "Code"
+
+[node name="ColorRect" type="ColorRect" parent="ResponseZone/ResponseCode"]
+offset_top = 24.0
+offset_right = 832.0
+offset_bottom = 81.0
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="Code" type="Label" parent="ResponseZone/ResponseCode"]
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 816.0
+offset_bottom = 72.0
+
+[node name="ResponseHeaders" type="Node2D" parent="ResponseZone"]
+position = Vector2(0, 224)
+
+[node name="Title" type="Label" parent="ResponseZone/ResponseHeaders"]
+offset_right = 65.0
+offset_bottom = 23.0
+text = "Headers"
+
+[node name="ColorRect" type="ColorRect" parent="ResponseZone/ResponseHeaders"]
+offset_top = 24.0
+offset_right = 832.0
+offset_bottom = 512.0
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="Headers" type="RichTextLabel" parent="ResponseZone/ResponseHeaders"]
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 816.0
+offset_bottom = 512.0
+
+[node name="ResponseBody" type="Node2D" parent="ResponseZone"]
+position = Vector2(856, 32)
+
+[node name="Title" type="Label" parent="ResponseZone/ResponseBody"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Body"
+
+[node name="ColorRect" type="ColorRect" parent="ResponseZone/ResponseBody"]
+offset_top = 24.0
+offset_right = 832.0
+offset_bottom = 704.0
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="Body" type="RichTextLabel" parent="ResponseZone/ResponseBody"]
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 816.0
+offset_bottom = 704.0
+
+[connection signal="pressed" from="RequestZone/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="pressed" from="FillButtonsZone/GitHubButton" to="." method="_on_git_hub_button_pressed"]
+[connection signal="pressed" from="FillButtonsZone/ApiGetButton" to="." method="_on_api_get_button_pressed"]
