@@ -38,7 +38,7 @@ func _on_git_hub_button_pressed():
 
 
 func _on_api_get_button_pressed():
-	request_input.text = "https://sure.euler.usi.ch/json.php?mth=ins&res_name=new123"
+	request_input.text = "https://sure.euler.usi.ch/json.php?mth=ctx&res_id=1&yr=2023"
 	
 	
 func _on_api_get_upsert_pressed():
