@@ -31,12 +31,14 @@ position = Vector2(592, 64)
 position = Vector2(-144, -40)
 
 [node name="GitHubButton" type="Button" parent="RequestZone/FillButtonsZone"]
+visible = false
 offset_right = 72.0
 offset_bottom = 32.0
 text = "GitHub"
 metadata/_edit_use_anchors_ = true
 
 [node name="ApiGetButton" type="Button" parent="RequestZone/FillButtonsZone"]
+visible = false
 offset_left = 80.0
 offset_right = 152.0
 offset_bottom = 32.0
@@ -44,25 +46,40 @@ text = "API GET"
 metadata/_edit_use_anchors_ = true
 
 [node name="ApiGetUpsertButton" type="Button" parent="RequestZone/FillButtonsZone"]
+visible = false
 offset_left = 160.0
 offset_right = 232.0
 offset_bottom = 32.0
 text = "API GET UPSERT"
 metadata/_edit_use_anchors_ = true
 
+[node name="Button" type="Button" parent="RequestZone/FillButtonsZone"]
+visible = false
+offset_right = 8.0
+offset_bottom = 8.0
+
 [node name="Input" type="TextEdit" parent="RequestZone"]
+visible = false
 offset_left = -144.0
 offset_right = 640.0
 offset_bottom = 88.0
 theme_override_colors/background_color = Color(0.226707, 0.226707, 0.226707, 1)
-text = "https://api.github.com/repos/godotengine/godot/releases/latest"
 wrap_mode = 1
 
 [node name="SendButton" type="Button" parent="RequestZone"]
+visible = false
 offset_left = 648.0
 offset_right = 832.0
 offset_bottom = 88.0
 text = "Send"
+
+[node name="SendButton2" type="Button" parent="RequestZone"]
+offset_left = -43.0
+offset_top = -25.0
+offset_right = 798.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 50
+text = "store shock history"
 
 [node name="Loading" type="Label" parent="RequestZone"]
 visible = false
@@ -177,4 +194,6 @@ selection_enabled = true
 [connection signal="pressed" from="RequestZone/FillButtonsZone/GitHubButton" to="." method="_on_git_hub_button_pressed"]
 [connection signal="pressed" from="RequestZone/FillButtonsZone/ApiGetButton" to="." method="_on_api_get_button_pressed"]
 [connection signal="pressed" from="RequestZone/FillButtonsZone/ApiGetUpsertButton" to="." method="_on_api_get_upsert_pressed"]
+[connection signal="pressed" from="RequestZone/FillButtonsZone/Button" to="." method="_on_shock_button_pressed"]
 [connection signal="pressed" from="RequestZone/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="pressed" from="RequestZone/SendButton2" to="." method="_on_send_button_pressed"]

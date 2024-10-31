@@ -10,6 +10,7 @@ extends Node
 
 func _ready():
 	$HTTPRequest.request_completed.connect(_on_request_completed)
+
 	
 
 func _on_request_completed(result: int, response_code : int, headers: PackedStringArray, body: PackedByteArray):
@@ -19,11 +20,176 @@ func _on_request_completed(result: int, response_code : int, headers: PackedStri
 	response_headers_field.text = JSON.stringify(headers, "\t")
 	response_body_field.text = JSON.stringify(JSON.parse_string(body.get_string_from_utf8()), "\t")
 
+
 func _on_send_button_pressed():
-	loading_label.show()
-	empty_fields()
-	var request = request_input.text
-	$HTTPRequest.request(request)
+	var shock_history_for_survey = {
+		"1": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"2": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"3": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"4": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"5": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"6": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"7": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"8": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		},
+		"9": {
+			"shock_title": {
+				"key" : "title_key",
+				"text" : "some text",
+			},
+			"shock_effect": {
+				"key": "title_key",
+				"text": "some_text"
+			},
+			"player_reactions": {
+				"chosen_reaction": 0,
+				"1": "some text",
+				"2": "some text",
+				"3": "some text"
+			},
+			"empty_entry": {}
+		}
+	}
+		
+	
+	var url = "https://sure.euler.usi.ch/json.php?mth=upd2"
+	var data_to_send = {
+		"res_id": "999",
+		"res_name": "Playground",
+		"res_txt": shock_history_for_survey
+	}
+	
+	var json = JSON.stringify(data_to_send)
+	var headers = ["Content-Type: application/json"]
+	print(json)
+	$HTTPRequest.request(url, headers, HTTPClient.METHOD_POST, json)
 
 
 func empty_fields():
